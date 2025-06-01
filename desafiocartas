@@ -1,53 +1,8 @@
-#include <GL/glut.h>
-#include <math.h>
+#include <stdio.h>
 
-float rotacao = 0.0f;
-
-void desenhaPlaneta() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glLoadIdentity();
-
-    // Posiciona a câmera
-    gluLookAt(0.0, 0.0, 5.0,  // Posição da câmera
-              0.0, 0.0, 0.0,  // Para onde olha
-              0.0, 1.0, 0.0); // Para cima
-
-    // Aplica rotação
-    glRotatef(rotacao, 0.0f, 1.0f, 0.0f);
-
-    // Cor do planeta
-    glColor3f(0.2f, 0.6f, 1.0f);
-
-    // Desenha uma esfera (o planeta)
-    glutSolidSphere(1.0, 50, 50);
-
-    glutSwapBuffers();
-}
-
-void atualizaRotacao(int value) {
-    rotacao += 1.0f;
-    if (rotacao > 360) rotacao -= 360;
-
-    glutPostRedisplay();
-    glutTimerFunc(16, atualizaRotacao, 0); // ~60 FPS
-}
-
-void initOpenGL() {
-    glEnable(GL_DEPTH_TEST);
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-}
-
-int main(int argc, char** argv) {
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowSize(800, 600);
-    glutCreateWindow("Planeta Girando");
-
-    initOpenGL();
-
-    glutDisplayFunc(desenhaPlaneta);
-    glutTimerFunc(0, atualizaRotacao, 0);
-
-    glutMainLoop();
+int main() {
+    // Código ANSI para cor amarela: \033[1;33m
+    // Código ANSI para resetar cor: \033[0m
+    printf("ola meu nome é \033[1;33mDarlan\033[0m\n");
     return 0;
 }
